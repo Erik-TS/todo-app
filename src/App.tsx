@@ -1,3 +1,4 @@
+import "./App.css"
 import { useState } from 'react'
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   const [taskList, setTaskList]: [Array<Task>, Function] = useState([])
 
   function addTask() {
-    const taskInput: HTMLInputElement = (document.querySelector("#taskInput") as HTMLInputElement)
+    const taskInput: HTMLInputElement = (document.querySelector("#TaskInput") as HTMLInputElement)
     if (taskInput.value != "") {
       const task: Task = {
         id: taskList.length,
@@ -34,20 +35,22 @@ function App() {
   function TaskElement(props: { id: number, description: string }) {
     return (
       <div className={"TaskElement"}>
-        <p>{props.description}</p>
+        <div className={"TaskElement-text"}>
+          <p>{props.description}</p>
+        </div>
         <input type="checkbox" name="" id="" />
-        <input onClick={() => removeTask(props.id)} type="button" value="Remove" />
+        <input className={"RemoveButton"} onClick={() => removeTask(props.id)} type="button" value="Remove" />
       </div>
     )
   }
 
   return (
     <>
-      <div className={"taskForm-container"}>
-        <input type="text" name="" id="taskInput" />
-        <input onClick={addTask} type="button" value="Add Task" />
+      <div className={"TaskFormContainer"}>
+        <input type="text" name="" id="TaskInput" />
+        <input className={"AddTaskButton"} onClick={addTask} type="button" value="Add Task" />
       </div>
-      <div className={"taskList-container"}>
+      <div className={"TaskListContainer"}>
         <ul>
           {taskList.map(task => <li key={task.id}><TaskElement id={task.id} description={task.description} /></li>)}
         </ul>

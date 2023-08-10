@@ -1,0 +1,84 @@
+body {
+    background-color: #A1E3D8;
+}
+
+ul {
+    list-style-type: none;
+    padding: auto;
+}
+
+p {
+    background-color: white;
+    border: 1px rgb(196, 196, 196) solid;
+    border-radius: 10px;
+    display: inline-block;
+    height: 5vh;
+    padding: 5px;
+    width: 47vw;
+}
+
+input[type="button"] {
+    border: 1px rgb(196, 196, 196) solid;
+    border-radius: 10px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: 700;
+    height: 4.5vh;
+}
+
+input[type="checkbox"] {
+    margin: 10px;
+    margin: 0 10px;
+    transform: scale(1.7);
+}
+
+#TaskInput {
+    border: 1px rgb(196, 196, 196) solid;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    height: 5vh;
+    margin: 10px;
+    padding: 5px;
+    width: 47vw;
+}
+
+.TaskElement {
+    display: inline-block;
+}
+
+.TaskElement-text {
+    height: 10vh;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+.TaskFormContainer {
+    width: 54vw;
+    margin: auto;
+}
+
+.TaskListContainer {
+    width: 57vw;
+    margin: auto;
+    background-color: #F7FF93;
+    border-radius: 10px;
+}
+
+.AddTaskButton {
+    background-color: rgb(62, 236, 18);
+}
+
+.AddTaskButton:hover {
+    background-color: rgb(110, 255, 73);
+}
+
+.RemoveButton {
+    background-color: rgb(255, 68, 54);
+}
+
+.RemoveButton:hover {
+    background-color: rgb(255, 123, 114);
+}
