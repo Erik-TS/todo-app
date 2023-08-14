@@ -6,6 +6,7 @@ function App() {
   interface Task {
     id: number
     description: string
+    isDone: boolean
   }
 
   const [taskList, setTaskList]: [Array<Task>, Function] = useState([])
@@ -15,7 +16,8 @@ function App() {
     if (taskInput.value != "") {
       const task: Task = {
         id: taskList.length,
-        description: taskInput.value
+        description: taskInput.value,
+        isDone: false
       }
       const currentList = [...taskList, task]
 
@@ -27,18 +29,28 @@ function App() {
   function removeTask(taskId: number) {
     let currentList: Array<Task> = taskList.filter(task => task.id != taskId)
     currentList = currentList.map((value, index) => {
-      return { id: index, description: value.description }
+      return { id: index, description: value.description, isDone: value.isDone }
     })
     setTaskList(currentList)
   }
 
-  function TaskElement(props: { id: number, description: string }) {
+  function TaskElement(props: Task) {
     return (
       <div className={"TaskElement"}>
-        <div className={"TaskElement-text"}>
+        <div className={props.isDone ? "TaskElementChecked-text" : "TaskElementUnchecked-text"}>
           <p>{props.description}</p>
         </div>
-        <input type="checkbox" name="" id="" />
+        <input checked={props.isDone ? true : false} onClick={(event) => {
+          const isChecked = event.currentTarget.checked
+          const updatedTask: Task = { id: props.id, description: props.description, isDone: isChecked }
+          let updatedTaskList = [...taskList]
+          updatedTaskList.splice(props.id, 1, updatedTask)
+
+          setTaskList(updatedTaskList)
+
+          /* if(isChecked) event.currentTarget.className = "TaskElementChecked-text"
+          else event.currentTarget.className = "TaskElementUnchecked-text" */
+        }} type="checkbox" name="" id="" />
         <input className={"RemoveButton"} onClick={() => removeTask(props.id)} type="button" value="Remove" />
       </div>
     )
@@ -52,7 +64,7 @@ function App() {
       </div>
       <div className={"TaskListContainer"}>
         <ul>
-          {taskList.map(task => <li key={task.id}><TaskElement id={task.id} description={task.description} /></li>)}
+          {taskList.map(task => <li key={task.id}><TaskElement id={task.id} description={task.description} isDone={task.isDone} /></li>)}
         </ul>
       </div>
     </>
